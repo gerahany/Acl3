@@ -147,6 +147,7 @@ public class BasePlayer : MonoBehaviour
         if (healingPotions < maxHealingPotions)
         {
             healingPotions++;
+            Heal();
             Debug.Log($"{playerName} now has {healingPotions} healing potions.");
         }
     }

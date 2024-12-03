@@ -2,19 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine;
+
 public class PotionScript : MonoBehaviour
 {
-    public int healingAmount = 10; // Amount to heal when collected
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // Check if it's the player
+        if (other.CompareTag("Player")) // Check if the player collided
         {
             BasePlayer player = other.GetComponent<BasePlayer>();
             if (player != null)
             {
-                player.AddPotion(); // Add potion to the player's inventory
-                Destroy(gameObject); // Destroy the potion
+                // Only add potion and destroy it if the player's inventory is not full
+                if (player.healingPotions < player.maxHealingPotions)
+                {
+                    player.AddPotion(); // Add potion to player's inventory
+                    Destroy(gameObject); // Destroy the potion after collection
+                }
+                else
+                {
+                    Debug.Log("Potion not collected: inventory is full.");
+                }
             }
         }
     }
