@@ -25,7 +25,7 @@ public class BasePlayer : MonoBehaviour
     void Start()
     {
         // Initialize health
-        currentHealth = 40;
+        currentHealth = maxHealth;
 
         // Get the fill image component of the health bar slider
         healthBarFill = healthBar.fillRect.GetComponent<Image>();
@@ -34,7 +34,7 @@ public class BasePlayer : MonoBehaviour
         if (healthBar != null)
         {
             healthBar.maxValue = maxHealth; // Set the maximum value of the slider
-            healthBar.value = 40;    // Set the initial value to full
+            healthBar.value = maxHealth;    // Set the initial value to full
         }
 
         // Update the UI
