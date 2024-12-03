@@ -9,6 +9,7 @@ TagManager:
   - Barbarian
   - Rouge
   - Sorcerer
+  - Potion
   layers:
   - Default
   - TransparentFX

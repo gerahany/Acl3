@@ -8,19 +8,13 @@ public class PotionScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the object entering the trigger is a player
-        if (other.CompareTag("Barbarian") || other.CompareTag("Rogue") || other.CompareTag("Sorcerer"))
+        if (other.CompareTag("Player")) // Check if it's the player
         {
-            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
+            BasePlayer player = other.GetComponent<BasePlayer>();
+            if (player != null)
             {
-                playerHealth.Heal(healingAmount); // Heal the player
-                Debug.Log($"{other.tag} collected a potion and healed for {healingAmount} HP!");
-                Destroy(gameObject); // Destroy the potion after collection
-            }
-            else
-            {
-                Debug.LogError($"{other.tag} does not have a PlayerHealth component!");
+                player.AddPotion(); // Add potion to the player's inventory
+                Destroy(gameObject); // Destroy the potion
             }
         }
     }
